@@ -64,9 +64,10 @@ python submit_to_cluster.py --use-curated --compute-name your-cluster-name
 ## �🛠️ Setup Instructions
 
 ### 1. Prerequisites
-- Azure ML workspace configured
-- Compute cluster created in Azure ML (see compute requirements below)
+- Azure ML workspace configured (see `azure_ml_setup.md` if you get config errors)
+- Compute cluster created in Azure ML (see compute requirements below)  
 - Appropriate permissions for Azure OpenAI and Data Lake Storage
+- **Note**: Azure ML workspace config is only required for cluster job submission, not for basic script execution
 
 ### 1.1 Compute Cluster Requirements
 

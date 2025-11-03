@@ -1,4 +1,10 @@
 {
+  "azure_ml_workspace": {
+    "subscription_id": "your-subscription-id",
+    "resource_group": "your-resource-group",
+    "workspace_name": "your-workspace-name",
+    "notes": "Only required for cluster job submission - not needed for basic script execution"
+  },
   "azure_openai": {
     "endpoint": "https://cogseraccrciru5aiyeus2.cognitiveservices.azure.com/",
     "api_version": "2024-12-01-preview",

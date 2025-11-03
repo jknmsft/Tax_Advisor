@@ -50,9 +50,14 @@ class TaxAdvisorEvaluator:
         """Setup Azure ML and OpenAI clients"""
         logger.info("Setting up Azure clients...")
         
-        # Authenticate and create MLClient
+        # Authenticate and create MLClient (optional - only needed for cluster jobs)
         credential = DefaultAzureCredential()
-        self.ml_client = MLClient.from_config(credential=credential)
+        try:
+            self.ml_client = MLClient.from_config(credential=credential)
+            logger.info("Azure ML client configured successfully")
+        except Exception as e:
+            logger.warning(f"Azure ML client setup failed (not required for basic execution): {str(e)}")
+            self.ml_client = None
         
         # Setup token provider
         token_provider = get_bearer_token_provider(
