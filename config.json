@@ -1,0 +1,34 @@
+{
+  "azure_openai": {
+    "endpoint": "https://cogseraccrciru5aiyeus2.cognitiveservices.azure.com/",
+    "api_version": "2024-12-01-preview",
+    "ft_deployment": "o4-mini-2025-04-16-new_model_grader_run2",
+    "pv_deployment": "o4-mini"
+  },
+  "data_storage": {
+    "account_name": "destadls2gzxfcx6xwhxssc",
+    "account_key": "FDCRYJMDH9pmpHL2xg6903AmPOQZwmLRPg/Z99Lg1Dldw6j9ABiQGpdmoyBRGDyWYyTTI4fzwVMq+ASt7I5vUw==",
+    "jsonl_path": "abfs://destadls2gzxfcx6xwhxssc/SRC/working_files/train_data_v4.jsonl"
+  },
+  "processing": {
+    "max_workers": 6,
+    "batch_size": 20,
+    "max_completion_tokens": 32678,
+    "request_delay": 0.1,
+    "notes": "max_workers should be 1.5-2x your CPU cores for I/O bound workloads"
+  },
+  "compute_cluster": {
+    "name": "your-compute-cluster-name",
+    "instance_type": "Standard_D4s_v3",
+    "max_instances": 4,
+    "recommended_workers_by_instance": {
+      "Standard_D4s_v3": 6,
+      "Standard_D8s_v3": 12,
+      "Standard_D16s_v3": 24
+    }
+  },
+  "output": {
+    "base_path": "azureml://datastores/workspaceblobstore/paths/tax-advisor-results/",
+    "local_path": "./results"
+  }
+}
