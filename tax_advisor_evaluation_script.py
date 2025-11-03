@@ -548,8 +548,8 @@ def main():
         logger.info(f"Using local data file: {args.local_data}")
     elif args.use_local:
         config['use_local_data'] = True
-        config['local_jsonl_path'] = './train_data_v4.jsonl'  # Default local filename
-        logger.info("Using local data file: ./train_data_v4.jsonl")
+        config['local_jsonl_path'] = './data/train_data_v4.jsonl'  # Default local filename
+        logger.info("Using local data file: ./data/train_data_v4.jsonl")
     else:
         config['use_local_data'] = False
         logger.info("Using Azure Data Lake for data source")

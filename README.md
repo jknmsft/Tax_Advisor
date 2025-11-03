@@ -415,11 +415,11 @@ python tax_advisor_evaluation_script.py
 # Specify custom local file path
 python tax_advisor_evaluation_script.py --local_data ./data/train_data_v4.jsonl
 
-# Use default local filename (./train_data_v4.jsonl)
+# Use default local filename (./data/train_data_v4.jsonl)
 python tax_advisor_evaluation_script.py --use_local
 
 # Configure in config.json
-# Set "use_local_data": true and "local_jsonl_path": "./your_file.jsonl"
+# Set "use_local_data": true and "local_jsonl_path": "./data/train_data_v4.jsonl"
 ```
 
 #### Benefits of Local Files:
