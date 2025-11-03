@@ -396,8 +396,37 @@ python tax_advisor_evaluation_script.py \
   --max_workers 8 \           # Number of parallel workers
   --batch_size 20 \           # Records per batch
   --output_dir ./results \    # Output directory
-  --max_records 100           # Limit records (for testing)
+  --max_records 100 \         # Limit records (for testing)
+  --local_data ./data/train_data_v4.jsonl \  # Use local file instead of Azure Data Lake
+  --use_local                 # Use default local file (./train_data_v4.jsonl)
 ```
+
+### Data Source Options
+You can read data from either Azure Data Lake Storage or local/workspace files:
+
+#### Option A: Azure Data Lake Storage (Default)
+```bash
+# Uses the path configured in config.json or script
+python tax_advisor_evaluation_script.py
+```
+
+#### Option B: Local/Workspace File
+```bash
+# Specify custom local file path
+python tax_advisor_evaluation_script.py --local_data ./data/train_data_v4.jsonl
+
+# Use default local filename (./train_data_v4.jsonl)
+python tax_advisor_evaluation_script.py --use_local
+
+# Configure in config.json
+# Set "use_local_data": true and "local_jsonl_path": "./your_file.jsonl"
+```
+
+#### Benefits of Local Files:
+- ✅ **Faster loading** - no network transfer
+- ✅ **Easier testing** - work with subset files
+- ✅ **No Azure Data Lake dependencies** - simpler setup
+- ✅ **Version control** - track data changes with git
 
 ### Performance Tuning
 - **max_workers**: Start with 1-2x your CPU cores (I/O bound workload)

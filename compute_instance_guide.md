@@ -32,14 +32,19 @@ Step-by-step instructions for running the tax advisor evaluation on a compute in
 # Option A: Using Jupyter interface
 # 1. Upload files through Jupyter file browser
 # 2. Create new folder: tax_advisor_evaluation
+# 3. Upload train_data_v4.jsonl to the same folder
 
 # Option B: Using git (recommended)
 cd /home/azureuser
 git clone <your-repo-url>
 cd tax_advisor_evaluation
 
-# Option C: Using Azure ML SDK
-# Files can be uploaded programmatically
+# Option C: Upload data file separately
+# If you have the JSONL file locally, upload it via Jupyter:
+# 1. Go to Jupyter file browser
+# 2. Click "Upload" button
+# 3. Select your train_data_v4.jsonl file
+# 4. Upload to your project folder
 ```
 
 ## 🧪 Testing on Compute Instance
@@ -66,13 +71,19 @@ nano config.json
 # Test 1: Data processing without API calls
 python test_local.py
 
-# Test 2: Small dataset with real API calls
+# Test 2: Small dataset with local data file (recommended for testing)
+python tax_advisor_evaluation_script.py --max_records 5 --max_workers 2 --use_local --output_dir ./test_results
+
+# Test 3: Small dataset with Azure Data Lake (if configured)
 python tax_advisor_evaluation_script.py --max_records 5 --max_workers 2 --output_dir ./test_results
 
-# Test 3: Medium dataset for performance testing
-python tax_advisor_evaluation_script.py --max_records 50 --max_workers 4 --output_dir ./test_results_50
+# Test 4: Medium dataset for performance testing
+python tax_advisor_evaluation_script.py --max_records 50 --max_workers 4 --use_local --output_dir ./test_results_50
 
-# Test 4: Monitor resource usage
+# Test 5: Custom data file path
+python tax_advisor_evaluation_script.py --local_data ./data/train_data_v4.jsonl --max_records 10 --max_workers 2
+
+# Test 6: Monitor resource usage
 htop  # or top to monitor CPU/memory usage during execution
 ```
 
