@@ -404,10 +404,10 @@ class TaxAdvisorEvaluator:
         eval_df = pd.DataFrame(self.evaluation_list)
         
         # Score distributions
-        plt.figure(figsize=(12, 8))
+        plt.figure(figsize=(18, 10))
         
         # Histogram of all scores
-        plt.subplot(2, 2, 1)
+        plt.subplot(2, 3, 1)
         score_columns = ['reference_answer_score', 'base_answer_score', 'fine_tuned_answer_score']
         for column in score_columns:
             if column in eval_df.columns:
@@ -418,7 +418,7 @@ class TaxAdvisorEvaluator:
         plt.legend()
         
         # Best answer counts
-        plt.subplot(2, 2, 2)
+        plt.subplot(2, 3, 2)
         if 'best_answer' in eval_df.columns:
             eval_df['best_answer'].value_counts().plot(kind='bar')
             plt.title('Best Answer Distribution')
@@ -426,16 +426,22 @@ class TaxAdvisorEvaluator:
         
         # Score comparisons
         if all(col in eval_df.columns for col in score_columns):
-            plt.subplot(2, 2, 3)
+            plt.subplot(2, 3, 3)
             twostep_v_ft = eval_df['reference_answer_score'] - eval_df['fine_tuned_answer_score']
             sns.histplot(twostep_v_ft, bins=20, binrange=(-1,1), kde=True, alpha=0.3)
             plt.title('Reference - Fine-tuned Scores')
             plt.xlabel('Score Difference')
             
-            plt.subplot(2, 2, 4)
+            plt.subplot(2, 3, 4)
             ft_v_pv = eval_df['fine_tuned_answer_score'] - eval_df['base_answer_score']
             sns.histplot(ft_v_pv, bins=20, binrange=(-1,1), kde=True, alpha=0.3)
             plt.title('Fine-tuned - Base Scores')
+            plt.xlabel('Score Difference')
+            
+            plt.subplot(2, 3, 5)
+            twostep_v_pv = eval_df['reference_answer_score'] - eval_df['base_answer_score']
+            sns.histplot(twostep_v_pv, bins=20, binrange=(-1,1), kde=True, alpha=0.3)
+            plt.title('Reference - Base Scores')
             plt.xlabel('Score Difference')
         
         plt.tight_layout()
