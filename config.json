@@ -13,7 +13,7 @@
   },
   "data_storage": {
     "account_name": "destadls2gzxfcx6xwhxssc",
-    "account_key": "FDCRYJMDH9pmpHL2xg6903AmPOQZwmLRPg/Z99Lg1Dldw6j9ABiQGpdmoyBRGDyWYyTTI4fzwVMq+ASt7I5vUw==",
+    "account_key": "",
     "jsonl_path": "abfs://destadls2gzxfcx6xwhxssc/SRC/working_files/train_data_v4.jsonl",
     "use_local_data": false,
     "local_jsonl_path": "./data/train_data_v4.jsonl",
